@@ -1,0 +1,49 @@
+using System;
+
+namespace Shesta
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Input the size of the array: ");
+            int n = int.Parse(Console.ReadLine());
+            int[,] arr = new int[n, n];
+            Random rd = new Random();
+            int cnt0 = 0;
+            int pCnt = 0;
+            int sumP = 0;
+            int nCnt = 0;
+            int sumN = 0;
+
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    arr[i, j] = rd.Next(-10, 10);
+                    Console.Write("{0} ", arr[i, j]);
+                    if (arr[i, j] == 0)
+                    {
+                        cnt0++;
+                    }
+                    else if (arr[i, j] < 0)
+                    {
+                        nCnt++;
+                        sumN += arr[i, j];
+                    }else
+                    {
+                        pCnt++;
+                        sumP += arr[i, j];
+                    }
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("The number of positive numbers is: {0} and their sum is {1} " +
+                "\nThe number of negative numbers is: {2} and their sum is {3} " +
+                "\nThe number of 0 is: {4} and their sum is 0", pCnt, sumP, nCnt, sumN, cnt0);
+            Console.ReadLine();
+        }
+    }
+}
