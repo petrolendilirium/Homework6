@@ -1,0 +1,51 @@
+using System;
+
+namespace Sedma
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Input the number of rows: ");
+            int n = int.Parse(Console.ReadLine());
+            Console.Write("Input the number of collums: ");
+            int m = int.Parse(Console.ReadLine());
+            int[,] arr = new int[n, m];
+            int[,] arrB = new int[n, m];
+            Random rd = new Random();
+            int sum = 0;
+
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    arr[i, j] = rd.Next(0, 99);
+                    Console.Write("{0} ", arr[i, j]);
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("The B matrix is: ");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if ((i + j) % 2 == 0)
+                    {
+                        arrB[i, j] = arr[i, j];
+                    }
+                    else
+                    {
+                        arrB[i, j] = i + j;
+                    }
+
+                    Console.Write("{0} ", arrB[i, j]);
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
