@@ -1,0 +1,78 @@
+using System;
+
+namespace Chetvurta
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Input the size of the array: ");
+            int n = int.Parse(Console.ReadLine());
+            int[,] arr = new int[n, n];
+            int[,] arrB = new int[n, n];
+            Random rd = new Random();
+            int min = 100;
+            int minColl = 0;
+            int max = -100;
+            int maxColl = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {                 
+                    arr[i, j] = rd.Next(-100, 100);
+                    Console.Write("{0} ", arr[i, j]);
+                    if (arr[i, j] > max)
+                    {
+                        max = arr[i, j];
+                        maxColl = j;
+                    }
+                    else if (arr[i, j] < min)
+                    {
+                        min = arr[i, j];
+                        minColl = j;
+                    }
+                }
+                Console.WriteLine();
+            }
+
+            if (minColl != maxColl)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (j == minColl)
+                        {
+                            arrB[i, j] = arr[i, maxColl];
+                        }
+                        else if (j == maxColl)
+                        {
+                            arrB[i, j] = arr[i, minColl];
+                        }
+                        else
+                        {
+                            arrB[i, j] = arr[i,j];
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("The min number is {0} and the max number is {1}.", min, max);
+            if (minColl != maxColl)
+            {
+                Console.WriteLine("The matrix is:");
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        Console.Write("{0} ", arrB[i, j]);
+                    }
+                    Console.WriteLine();
+                }
+            }
+
+            Console.ReadLine();
+        }
+    }
+}
