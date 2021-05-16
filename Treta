@@ -1,0 +1,92 @@
+using System;
+
+namespace Treta
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int m = 0;
+            while (m % 2 == 0) {
+                Console.Write("Input the size of the array: ");
+                m = int.Parse(Console.ReadLine()); 
+            }
+
+            int[,] arr = new int[m, m];
+            Random rd = new Random();
+            int sumRow = 0;
+            int sum0Row = 0;
+            int sumColl = 0;
+            int sum0Coll = 0;
+            int sumDiag = 0;
+            int sumRevDiag = 0;
+            bool row = true;
+            bool coll = true;
+            bool diag = true;
+            bool revDiag = true;
+
+
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    arr[i, j] = rd.Next(-10, 10);
+                    Console.Write("{0} ", arr[i, j]);
+                }
+                Console.WriteLine();
+            }
+
+            for(int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                   if (i == 0)
+                    {
+                        sum0Row += arr[i, j];
+                    }else
+                    {
+                        sumRow += arr[i, j];
+                    }
+                }
+
+                if (i > 0 && sum0Row == sumRow)
+                {
+                    sumRow = 0;
+                }
+                else if (i > 0 && sum0Row != sumRow)
+                {
+                    row = false;
+                    break;
+                }
+                Console.WriteLine();
+            }
+
+
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (i == 0)
+                    {
+                        sum0Coll += arr[j, i];
+                    }
+                    else
+                    {
+                        sumColl += arr[j, i];
+                    }
+                }
+
+                if (i > 0 && sum0Coll == sumColl)
+                {
+                    sumColl = 0;
+                }
+                else if (i > 0 && sum0Coll != sumColl)
+                {
+                    coll = false;
+                    break;
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
