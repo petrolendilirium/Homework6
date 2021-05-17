@@ -7,9 +7,10 @@ namespace Treta
         static void Main(string[] args)
         {
             int m = 0;
-            while (m % 2 == 0) {
+            while (m % 2 == 0)
+            {
                 Console.Write("Input the size of the array: ");
-                m = int.Parse(Console.ReadLine()); 
+                m = int.Parse(Console.ReadLine());
             }
 
             int[,] arr = new int[m, m];
@@ -36,14 +37,15 @@ namespace Treta
                 Console.WriteLine();
             }
 
-            for(int i = 0; i < m; i++)
+            for (int i = 0; i < m; i++)
             {
                 for (int j = 0; j < m; j++)
                 {
-                   if (i == 0)
+                    if (i == 0)
                     {
                         sum0Row += arr[i, j];
-                    }else
+                    }
+                    else
                     {
                         sumRow += arr[i, j];
                     }
@@ -58,7 +60,6 @@ namespace Treta
                     row = false;
                     break;
                 }
-                Console.WriteLine();
             }
 
 
@@ -85,8 +86,43 @@ namespace Treta
                     coll = false;
                     break;
                 }
-                Console.WriteLine();
+                else if (i > 0 && sum0Row != sumColl)
+                {
+                    coll = false;
+                    break;
+                }
             }
+
+            int f = 0;
+            for (int i = 0; i < m; i++)
+            {
+                sumDiag = sumDiag + arr[i, f];
+                f++;
+            }
+            f = 0;
+
+            for (int i = 0; i < m; i++)
+            {
+                sumRevDiag = sumRevDiag + arr[i, f];
+                f++;
+            }
+
+            if (sumDiag != sumRevDiag || sumDiag != sum0Coll || sumDiag != sum0Row || sumRevDiag != sum0Coll || sumRevDiag != sum0Row)
+            {
+                diag = false;
+                revDiag = false;
+            }
+
+            if (diag == false || coll == false || revDiag == false || row == false)
+            {
+                Console.WriteLine("The matrix is not magical.");
+            }
+            else
+            {
+                Console.WriteLine("The matrix is magical.");
+            }
+
+            Console.ReadLine();
         }
     }
 }
